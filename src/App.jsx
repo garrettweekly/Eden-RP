@@ -245,51 +245,67 @@ export default function App() {
         </div>
       </div>
 
-      {/* Safety & Rules Section */}
+      {/* Updated Safety & Rules Section */}
       <div id="safety" className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">Safety & Code of Conduct</h2>
+            <h2 className="text-4xl font-bold mb-4">Safety & Rules</h2>
             <p className="text-xl text-gray-300">Our commitment to a safe and inclusive environment</p>
           </div>
           
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <div>
-              <h3 className="text-2xl font-bold mb-6">Our Code of Conduct</h3>
+              <h3 className="text-2xl font-bold mb-6">Key Community Rules</h3>
               
               <div className="space-y-6">
                 <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20">
                   <h4 className="font-bold text-lg mb-3 flex items-center">
-                    <span className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center text-white text-xs mr-3">✓</span>
-                    Respect & Inclusion
+                    <span className="w-6 h-6 bg-red-500 rounded-full flex items-center justify-center text-white text-xs mr-3">!</span>
+                    Zero Tolerance Policy
                   </h4>
-                  <p className="text-gray-300">All players are required to respect others' identities, pronouns, and boundaries. Hate speech, discrimination, and harassment will not be tolerated.</p>
+                  <p className="text-gray-300">Homophobia, transphobia, racism, ableism, misogyny, and any form of discrimination are grounds for instant removal from our community.</p>
                 </div>
                 
                 <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20">
                   <h4 className="font-bold text-lg mb-3 flex items-center">
-                    <span className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center text-white text-xs mr-3">✓</span>
-                    Pronoun Usage
+                    <span className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center text-white text-xs mr-3">i</span>
+                    Respect Boundaries
                   </h4>
-                  <p className="text-gray-300">Pronouns are mandatory in all communication. Players must use others' correct pronouns and update their own in Discord and in-game profiles.</p>
+                  <p className="text-gray-300">If someone expresses discomfort, OOC or IC, stop the scene immediately. Player consent is paramount in all roleplay scenarios.</p>
                 </div>
                 
                 <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20">
                   <h4 className="font-bold text-lg mb-3 flex items-center">
                     <span className="w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center text-white text-xs mr-3">✓</span>
-                    Reporting System
+                    Character-Driven Stories
                   </h4>
-                  <p className="text-gray-300">Clear, anonymous reporting channels with guaranteed response within 24 hours. All reports are taken seriously and investigated promptly.</p>
+                  <p className="text-gray-300">Your choices should reflect your character's background and motives, not your own. Stay in character and develop your character over time.</p>
+                </div>
+                
+                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20">
+                  <h4 className="font-bold text-lg mb-3 flex items-center">
+                    <span className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center text-white text-xs mr-3">⚔️</span>
+                    No Powergaming
+                  </h4>
+                  <p className="text-gray-300">You cannot control another character's reactions or force outcomes. NVL (Not Valuing Life) is strictly prohibited.</p>
+                </div>
+                
+                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20">
+                  <h4 className="font-bold text-lg mb-3 flex items-center">
+                    <span className="w-6 h-6 bg-yellow-500 rounded-full flex items-center justify-center text-white text-xs mr-3">🔒</span>
+                    Consent for Sensitive RP
+                  </h4>
+                  <p className="text-gray-300">Torture, kidnapping, and hostage RP require OOC consent through our ticket system. You may not kidnap the same person twice within an hour.</p>
                 </div>
               </div>
             </div>
             
             <div>
-              <h3 className="text-2xl font-bold mb-6">Moderation Policy</h3>
+              <h3 className="text-2xl font-bold mb-6">Rule Enforcement</h3>
               
               <div className="bg-white/10 backdrop-blur-sm rounded-lg p-8 border border-white/20">
                 <div className="mb-6">
-                  <h4 className="font-bold mb-3">How to Report</h4>
+                  <h4 className="font-bold mb-3 text-lg">Reporting System</h4>
                   <ol className="text-gray-300 space-y-2 text-sm">
                     <li>1. Use the #report-harassment channel in Discord</li>
                     <li>2. Fill out the anonymous web form (link in Discord)</li>
@@ -298,22 +314,39 @@ export default function App() {
                 </div>
                 
                 <div className="mb-6">
-                  <h4 className="font-bold mb-3">Response Time</h4>
-                  <p className="text-gray-300">All reports receive acknowledgment within 1 hour and full investigation within 24 hours.</p>
+                  <h4 className="font-bold mb-3 text-lg">Common Penalties</h4>
+                  <div className="space-y-2 text-sm">
+                    <div className="flex justify-between">
+                      <span>RDM (Random Deathmatch):</span>
+                      <span className="text-red-400">48 hour ban</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span>VDM (Vehicle Deathmatch):</span>
+                      <span className="text-red-400">24 hour ban</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span>OOC Talk in City:</span>
+                      <span className="text-yellow-400">2 hour ban</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span>Combat Logging:</span>
+                      <span className="text-yellow-400">12 hour ban</span>
+                    </div>
+                  </div>
                 </div>
                 
                 <div className="mb-6">
-                  <h4 className="font-bold mb-3">Consequences</h4>
-                  <p className="text-gray-300">Violations result in warnings, temporary suspensions, or permanent bans based on severity and repeat offenses.</p>
+                  <h4 className="font-bold mb-3 text-lg">Rule Updates</h4>
+                  <p className="text-gray-300 text-sm">Our rules are living documents that evolve with our community. Staff decisions may set precedents that become official policy.</p>
                 </div>
                 
                 <a
-                  href="https://discord.gg/YMGWAcXCpT"
+                  href="https://docs.google.com/document/d/1ZIDMjr-MD5D2tMHdXRWAEziQ5Y0sHVxR0a4KJ3o0LPg/edit?tab=t.0"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block bg-gradient-to-r from-pink-600 to-purple-600 px-6 py-3 rounded-lg text-center hover:from-pink-700 hover:to-purple-700 transition-all duration-200 text-sm font-semibold"
+                  className="inline-block bg-gradient-to-r from-pink-600 to-purple-600 px-8 py-4 rounded-lg text-center hover:from-pink-700 hover:to-purple-700 transition-all duration-200 text-base font-semibold w-full text-center"
                 >
-                  Read Full Rules in Discord
+                  View Full Rulebook
                 </a>
               </div>
             </div>
