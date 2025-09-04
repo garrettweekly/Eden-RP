@@ -19,8 +19,8 @@ export default function App() {
         
         // In a real implementation, this would be a call to your backend endpoint
         // that proxies the Discord API request
-         const response = await fetch('/events');
-        
+         const response = await fetch('http://35.150.60.155:3000/events');
+
         if (!response.ok) {
           throw new Error(`Failed to fetch events: ${response.status}`);
         }
