@@ -1,10 +1,19 @@
+/* eslint-env node */
+/* global process */
 import express from "express";
+import cors from "cors";
 import fetch from "node-fetch";
 import 'dotenv/config'; // or: import dotenv from 'dotenv'; dotenv.config();
 
 const app = express();
-const DISCORD_TOKEN = process.env.DISCORD_TOKEN;
-const GUILD_ID = process.env.GUILD_ID; // your server ID
+app.use(cors());
+const DISCORD_TOKEN = 'MTQxMjY4MDE5ODIxODA1NTcyMA.GC2I7W.hwBQRS9LpGALDFGcS4myE3ujiBGFSZfceTSTrQ';
+const GUILD_ID = '1386475286136356924'; // your server ID
+
+if (!DISCORD_TOKEN || !GUILD_ID) {
+  console.error('Missing DISCORD_TOKEN or GUILD_ID');
+  process.exit(1);
+}
 
 app.get("/events", async (_req, res) => {
   try {
