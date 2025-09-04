@@ -7,8 +7,8 @@ import 'dotenv/config'; // or: import dotenv from 'dotenv'; dotenv.config();
 
 const app = express();
 app.use(cors());
-const DISCORD_TOKEN = 'MTQxMjY4MDE5ODIxODA1NTcyMA.GC2I7W.hwBQRS9LpGALDFGcS4myE3ujiBGFSZfceTSTrQ';
-const GUILD_ID = '1386475286136356924'; // your server ID
+const DISCORD_TOKEN = process.env.DISCORD_TOKEN;
+const GUILD_ID = process.env.GUILD_ID; // your server ID
 
 if (!DISCORD_TOKEN || !GUILD_ID) {
   console.error('Missing DISCORD_TOKEN or GUILD_ID');
