@@ -1,5 +1,6 @@
 import express from "express";
 import fetch from "node-fetch";
+import 'dotenv/config'; // or: import dotenv from 'dotenv'; dotenv.config();
 
 const app = express();
 const DISCORD_TOKEN = process.env.DISCORD_TOKEN;

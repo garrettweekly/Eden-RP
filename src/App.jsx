@@ -1,11 +1,85 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('home');
+  const [events, setEvents] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   const scrollToSection = (id) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   };
+
+  // Fetch events from Discord API when component mounts
+  useEffect(() => {
+    const fetchEvents = async () => {
+      try {
+        setIsLoading(true);
+        setError(null);
+        
+        // In a real implementation, this would be a call to your backend endpoint
+        // that proxies the Discord API request
+        const response = await fetch('/api/events');
+        
+        if (!response.ok) {
+          throw new Error(`Failed to fetch events: ${response.status}`);
+        }
+        
+        const data = await response.json();
+        
+        // Transform Discord API events to match our format
+        const formattedEvents = data.map(event => {
+          // Determine event type based on description or other criteria
+          let eventType = "Community";
+          if (event.description?.toLowerCase().includes("story") || 
+              event.description?.toLowerCase().includes("arc")) {
+            eventType = "Story";
+          } else if (event.description?.toLowerCase().includes("stream") ||
+                    event.description?.toLowerCase().includes("twitch") ||
+                    event.description?.toLowerCase().includes("youtube")) {
+            eventType = "Creator";
+          } else if (event.name.toLowerCase().includes("weekly") ||
+                    event.name.toLowerCase().includes("recurring")) {
+            eventType = "Recurring";
+          }
+          
+          return {
+            title: event.name,
+            date: new Date(event.scheduled_start_time).toLocaleDateString('en-US', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric',
+              hour: '2-digit',
+              minute: '2-digit',
+              timeZoneName: 'short'
+            }),
+            type: eventType,
+            description: event.description || ''
+          };
+        });
+        
+        // Sort events by date (soonest first)
+        formattedEvents.sort((a, b) => new Date(a.date) - new Date(b.date));
+        
+        setEvents(formattedEvents);
+      } catch (err) {
+        console.error('Error fetching events:', err);
+        setError(err.message);
+        
+        // Fallback to static events if API fails
+        setEvents([
+          { title: "Pride Parade Roleplay", date: "June 15, 2025", type: "Community" },
+          { title: "Detective Mystery Arc", date: "June 20-22, 2025", type: "Story" },
+          { title: "Weekly Trivia Night", date: "Every Friday, 8 PM EST", type: "Recurring" },
+          { title: "Streamer Showcase", date: "June 28, 2025", type: "Creator" }
+        ]);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchEvents();
+  }, []);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 text-white">
@@ -192,29 +266,40 @@ export default function App() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               <div>
                 <h3 className="text-2xl font-bold mb-6">Upcoming Events</h3>
-                <div className="space-y-4">
-                  {[
-                    { title: "Pride Parade Roleplay", date: "June 15, 2025", type: "Community" },
-                    { title: "Detective Mystery Arc", date: "June 20-22, 2025", type: "Story" },
-                    { title: "Weekly Trivia Night", date: "Every Friday, 8 PM EST", type: "Recurring" },
-                    { title: "Streamer Showcase", date: "June 28, 2025", type: "Creator" }
-                  ].map((event, index) => (
-                    <div key={index} className="flex items-center justify-between p-4 bg-white/5 rounded-lg">
-                      <div>
-                        <h4 className="font-semibold">{event.title}</h4>
-                        <p className="text-gray-400 text-sm">{event.date}</p>
+                
+                {isLoading ? (
+                  <div className="flex items-center justify-center p-8">
+                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-pink-500"></div>
+                    <span className="ml-3">Loading events...</span>
+                  </div>
+                ) : error ? (
+                  <div className="p-4 bg-red-500/20 border border-red-500/30 rounded-lg text-red-300">
+                    Failed to load events. Please try again later.
+                  </div>
+                ) : events.length === 0 ? (
+                  <div className="p-8 text-center text-gray-400 bg-white/5 rounded-lg">
+                    No upcoming events currently scheduled
+                  </div>
+                ) : (
+                  <div className="space-y-4">
+                    {events.map((event, index) => (
+                      <div key={index} className="flex items-center justify-between p-4 bg-white/5 rounded-lg">
+                        <div>
+                          <h4 className="font-semibold">{event.title}</h4>
+                          <p className="text-gray-400 text-sm">{event.date}</p>
+                        </div>
+                        <span className={`px-3 py-1 rounded-full text-xs font-semibold ${
+                          event.type === 'Community' ? 'bg-blue-500/20 text-blue-300' :
+                          event.type === 'Story' ? 'bg-purple-500/20 text-purple-300' :
+                          event.type === 'Recurring' ? 'bg-green-500/20 text-green-300' :
+                          'bg-pink-500/20 text-pink-300'
+                        }`}>
+                          {event.type}
+                        </span>
                       </div>
-                      <span className={`px-3 py-1 rounded-full text-xs font-semibold ${
-                        event.type === 'Community' ? 'bg-blue-500/20 text-blue-300' :
-                        event.type === 'Story' ? 'bg-purple-500/20 text-purple-300' :
-                        event.type === 'Recurring' ? 'bg-green-500/20 text-green-300' :
-                        'bg-pink-500/20 text-pink-300'
-                      }`}>
-                        {event.type}
-                      </span>
-                    </div>
-                  ))}
-                </div>
+                    ))}
+                  </div>
+                )}
               </div>
               
               <div>
@@ -245,7 +330,7 @@ export default function App() {
         </div>
       </div>
 
-      {/* Updated Safety & Rules Section */}
+      {/* Safety & Rules Section */}
       <div id="safety" className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
