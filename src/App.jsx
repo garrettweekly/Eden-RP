@@ -19,8 +19,8 @@ export default function App() {
         
         // In a real implementation, this would be a call to your backend endpoint
         // that proxies the Discord API request
-         const response = await fetch('http://35.150.60.155:3000/events');
-
+        const response = await fetch('/api/events');
+        
         if (!response.ok) {
           throw new Error(`Failed to fetch events: ${response.status}`);
         }
@@ -96,13 +96,13 @@ export default function App() {
               <span className="text-xl font-bold">Eden RP</span>
             </div>
             <div className="hidden md:flex space-x-8">
-              {['Home', 'Quickstart', 'Features', 'Events', 'Safety'].map((item) => (
+              {['Home', 'Quickstart', 'Features', 'Events', 'Donations', 'Safety'].map((item) => (
                 <button
                   key={item}
                   onClick={() => scrollToSection(item.toLowerCase())}
                   className="text-sm hover:text-pink-300 transition-colors duration-200"
                 >
-                  {item}
+                  {item === 'Donations' ? 'Donate' : item}
                 </button>
               ))}
             </div>
@@ -326,6 +326,200 @@ export default function App() {
                 </p>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Donations Section */}
+      <div id="donations" className="py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold mb-4">Support Eden RP</h2>
+            <p className="text-xl text-gray-300">Help us maintain and improve our community through donations</p>
+            <div className="w-32 h-1 bg-gradient-to-r from-pink-500 to-purple-500 mx-auto mt-6"></div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Eden Enthusiast */}
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20 hover:bg-white/15 transition-all duration-300 flex flex-col">
+              <div className="text-center mb-6">
+                <h3 className="text-2xl font-bold text-pink-300 mb-2">Eden Enthusiast</h3>
+                <div className="text-4xl font-bold mb-4">$10.00</div>
+                <p className="text-gray-300 mb-6">Show your love for the community and enjoy exclusive perks</p>
+              </div>
+              
+              <div className="flex-grow">
+                <ul className="space-y-3 mb-8">
+                  <li className="flex items-start">
+                    <svg className="w-5 h-5 text-green-400 mt-1 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    </svg>
+                    <span>Access to Supporter Chat (private Discord channel)</span>
+                  </li>
+                  <li className="flex items-start">
+                    <svg className="w-5 h-5 text-green-400 mt-1 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    </svg>
+                    <span>Exclusive Supporter Emotes</span>
+                  </li>
+                  <li className="flex items-start">
+                    <svg className="w-5 h-5 text-green-400 mt-1 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    </svg>
+                    <span>Monthly Custom License Plate</span>
+                  </li>
+                  <li className="flex items-start">
+                    <svg className="w-5 h-5 text-green-400 mt-1 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    </svg>
+                    <span>Priority Support (faster ticket responses)</span>
+                  </li>
+                </ul>
+              </div>
+              
+              <a
+                href="https://eden-rp-store.tebex.io/package/6965892"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-gradient-to-r from-pink-600 to-purple-600 hover:from-pink-700 hover:to-purple-700 text-white px-6 py-4 rounded-xl font-semibold transition-all duration-200 text-center mt-auto"
+              >
+                Subscribe to Eden Enthusiast
+              </a>
+              
+              <p className="text-xs text-gray-400 mt-4 text-center">
+                Note: All rewards are in-game virtual items with no real-world value
+              </p>
+            </div>
+
+            {/* Garden Guardian */}
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border-2 border-pink-500/50 hover:bg-white/15 transition-all duration-300 flex flex-col transform hover:scale-105">
+              <div className="text-center mb-6">
+                <h3 className="text-2xl font-bold text-purple-300 mb-2">Garden Guardian</h3>
+                <div className="text-4xl font-bold mb-4">$20.00</div>
+                <p className="text-gray-300 mb-6">For those who like their perks a little extra!</p>
+              </div>
+              
+              <div className="flex-grow">
+                <ul className="space-y-3 mb-8">
+                  <li className="flex items-start">
+                    <svg className="w-5 h-5 text-green-400 mt-1 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    </svg>
+                    <span>All Eden Enthusiast benefits included</span>
+                  </li>
+                  <li className="flex items-start">
+                    <svg className="w-5 h-5 text-green-400 mt-1 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    </svg>
+                    <span>Enhanced Supporter Chat access</span>
+                  </li>
+                  <li className="flex items-start">
+                    <svg className="w-5 h-5 text-green-400 mt-1 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    </svg>
+                    <span>Expanded Supporter Emotes</span>
+                  </li>
+                  <li className="flex items-start">
+                    <svg className="w-5 h-5 text-green-400 mt-1 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    </svg>
+                    <span>Monthly Custom License Plate</span>
+                  </li>
+                  <li className="flex items-start">
+                    <svg className="w-5 h-5 text-green-400 mt-1 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    </svg>
+                    <span>Priority Support (even faster responses)</span>
+                  </li>
+                </ul>
+              </div>
+              
+              <a
+                href="https://eden-rp-store.tebex.io/package/6965893"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-6 py-4 rounded-xl font-semibold transition-all duration-200 text-center mt-auto"
+              >
+                Subscribe to Garden Guardian
+              </a>
+              
+              <p className="text-xs text-gray-400 mt-4 text-center">
+                Note: All rewards are in-game virtual items with no real-world value
+              </p>
+            </div>
+
+            {/* Forbidden Fruit */}
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border-2 border-yellow-500/50 hover:bg-white/15 transition-all duration-300 flex flex-col transform hover:scale-105 relative overflow-hidden">
+              <div className="absolute top-0 right-0 bg-gradient-to-l from-yellow-500 to-orange-500 text-black text-xs font-bold px-4 py-1 rounded-bl-lg">
+                MOST POPULAR
+              </div>
+              
+              <div className="text-center mb-6 pt-4">
+                <h3 className="text-2xl font-bold text-yellow-300 mb-2">Forbidden Fruit</h3>
+                <div className="text-4xl font-bold mb-4">$30.00</div>
+                <p className="text-gray-300 mb-6">Top tier for our most dedicated supporters</p>
+              </div>
+              
+              <div className="flex-grow">
+                <ul className="space-y-3 mb-8">
+                  <li className="flex items-start">
+                    <svg className="w-5 h-5 text-green-400 mt-1 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    </svg>
+                    <span>All previous tier benefits included</span>
+                  </li>
+                  <li className="flex items-start">
+                    <svg className="w-5 h-5 text-green-400 mt-1 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    </svg>
+                    <span>Complete Supporter Emotes Set</span>
+                  </li>
+                  <li className="flex items-start">
+                    <svg className="w-5 h-5 text-green-400 mt-1 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    </svg>
+                    <span>Monthly Custom License Plate</span>
+                  </li>
+                  <li className="flex items-start">
+                    <svg className="w-5 h-5 text-green-400 mt-1 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    </svg>
+                    <span>Restricted Early Access to new features</span>
+                  </li>
+                  <li className="flex items-start">
+                    <svg className="w-5 h-5 text-green-400 mt-1 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    </svg>
+                    <span>Additional Permanent Character Slot</span>
+                  </li>
+                  <li className="flex items-start">
+                    <svg className="w-5 h-5 text-green-400 mt-1 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    </svg>
+                    <span>Priority Support (fastest response times)</span>
+                  </li>
+                </ul>
+              </div>
+              
+              <a
+                href="https://eden-rp-store.tebex.io/package/6965895"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-gradient-to-r from-yellow-600 to-orange-600 hover:from-yellow-700 hover:to-orange-700 text-white px-6 py-4 rounded-xl font-semibold transition-all duration-200 text-center mt-auto"
+              >
+                Subscribe to Forbidden Fruit
+              </a>
+              
+              <p className="text-xs text-gray-400 mt-4 text-center">
+                Note: All rewards are in-game virtual items with no real-world value
+              </p>
+            </div>
+          </div>
+
+          <div className="text-center mt-12">
+            <p className="text-gray-400 text-sm">
+              Delivery: Discord roles are applied within 5 minutes of purchase. To redeem plates and character slots, open a ticket in Discord with your Tebex order ID.
+            </p>
           </div>
         </div>
       </div>
